@@ -31,15 +31,20 @@
 
   <artifactId>tika-bundle</artifactId>
   <packaging>bundle</packaging>
-  <name>Apache Tika OSGi bundle</name>
+  <name>Apache Tika parser bundle</name>
   <url>http://tika.apache.org/</url>
 
   <dependencies>
     <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+      <version>4.0.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>tika-core</artifactId>
       <version>${project.version}</version>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
@@ -57,12 +62,8 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <_exportcontents>
-              org.apache.tika.*;version=${project.version}
-            </_exportcontents>
             <Embed-Dependency>
-              tika-core;inline=true,
-              tika-parsers;inline=true,
+              tika-parsers,
               netcdf,
               commons-compress, commons-codec,
               pdfbox,fontbox,jempbox,bcmail-jdk15,bcprov-jdk15,
@@ -77,10 +78,6 @@
             <Embed-Transitive>true</Embed-Transitive>
             <Bundle-DocURL>${project.url}</Bundle-DocURL>
             <Bundle-Activator>org.apache.tika.config.TikaActivator</Bundle-Activator>
-            <Import-Package>
-                org.w3c.dom,
-                *;resolution:=optional
-            </Import-Package>
           </instructions>
         </configuration>
       </plugin>
