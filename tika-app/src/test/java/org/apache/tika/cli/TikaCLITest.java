@@ -16,10 +16,28 @@
  */
 package org.apache.tika.cli;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
+import java.io.Reader;
 import java.net.URI;
+import java.util.concurrent.atomic.AtomicLong;
+
+import org.apache.tika.Tika;
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.io.TikaInputStream;
+import org.apache.tika.io.TikaInputStreamTest;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.DelegatingParser;
+import org.apache.tika.parser.ParseContext;
+import org.apache.tika.parser.Parser;
+import org.apache.tika.parser.ParserDecorator;
+import org.xml.sax.ContentHandler;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
@@ -41,6 +59,41 @@ public class TikaCLITest extends TestCase{
         outContent = new ByteArrayOutputStream();
         stdout = System.out;
         System.setOut(new PrintStream(outContent));
+    }
+
+    public static void main(String[] args) throws Exception {
+        Tika tika = new Tika();
+        File file = new File("c:\\Users\\jukka\\Desktop\\enron_mail_20110402.tgz");
+
+        final AtomicLong count = new AtomicLong();
+        ParseContext context = new ParseContext();
+        context.set(Parser.class, new ParserDecorator(tika.getParser()) {
+            @Override
+            public void parse(
+                    InputStream stream, ContentHandler handler,
+                    Metadata metadata, ParseContext context)
+                    throws IOException, SAXException, TikaException {
+                try {
+                    long n = count.incrementAndGet();
+                    if (n % 100 == 0) {
+                        System.out.println(n);
+                    }
+                    super.parse(stream, handler, metadata, context);
+                } catch (Exception e) {
+                    System.out.println(metadata.get(Metadata.RESOURCE_NAME_KEY));
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Metadata metadata = new Metadata();
+        InputStream input = TikaInputStream.get(file, metadata);
+        try {
+            tika.getParser().parse(
+                    input, new DefaultHandler(), metadata, context);
+        } finally {
+            input.close();
+        }
     }
 
     /**
