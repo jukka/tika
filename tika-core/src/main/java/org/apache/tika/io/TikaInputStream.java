@@ -383,7 +383,7 @@ public class TikaInputStream extends TaggedInputStream {
 
         String type = connection.getContentType();
         if (type != null) {
-            metadata.set(Metadata.CONTENT_TYPE, type);
+            metadata.setFormat(type);
         }
 
         String encoding = connection.getContentEncoding();

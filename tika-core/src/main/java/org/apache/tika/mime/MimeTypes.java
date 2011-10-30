@@ -289,7 +289,7 @@ public final class MimeTypes implements Detector, Serializable {
                 metadata.set(Metadata.RESOURCE_NAME_KEY, url);
             }
             if (typeName != null) {
-                metadata.set(Metadata.CONTENT_TYPE, typeName);
+                metadata.setFormat(typeName);
             }
             return detect(new ByteArrayInputStream(data), metadata).toString();
         } catch (IOException e) {
@@ -545,7 +545,7 @@ public final class MimeTypes implements Detector, Serializable {
         }
 
         // Get type based on metadata hint (if available)
-        String typeName = metadata.get(Metadata.CONTENT_TYPE);
+        String typeName = metadata.getFormat();
         if (typeName != null) {
             try {
                 MediaType hint = forName(typeName).getType();

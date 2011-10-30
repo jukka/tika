@@ -51,8 +51,8 @@ public class XMLParser extends AbstractParser {
             InputStream stream, ContentHandler handler,
             Metadata metadata, ParseContext context)
             throws IOException, SAXException, TikaException {
-        if (metadata.get(Metadata.CONTENT_TYPE) == null) {
-            metadata.set(Metadata.CONTENT_TYPE, "application/xml");
+        if (metadata.getFormat() == null) {
+            metadata.setFormat("application/xml");
         }
 
         final XHTMLContentHandler xhtml =

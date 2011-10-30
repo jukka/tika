@@ -55,7 +55,7 @@ public class Mp3Parser extends AbstractParser {
             InputStream stream, ContentHandler handler,
             Metadata metadata, ParseContext context)
             throws IOException, SAXException, TikaException {
-        metadata.set(Metadata.CONTENT_TYPE, "audio/mpeg");
+        metadata.setFormat("audio/mpeg");
         metadata.set(XMPDM.AUDIO_COMPRESSOR, "MP3");
 
         XHTMLContentHandler xhtml = new XHTMLContentHandler(handler, metadata);

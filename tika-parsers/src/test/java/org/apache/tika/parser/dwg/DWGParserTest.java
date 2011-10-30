@@ -73,7 +73,7 @@ public class DWGParserTest extends TestCase {
             ContentHandler handler = new BodyContentHandler();
             new DWGParser().parse(input, handler, metadata);
 
-            assertEquals("image/vnd.dwg", metadata.get(Metadata.CONTENT_TYPE));
+            assertEquals("image/vnd.dwg", metadata.getFormat());
 
             assertEquals("The quick brown fox jumps over the lazy dog", 
                     metadata.get(Metadata.TITLE));
@@ -103,7 +103,7 @@ public class DWGParserTest extends TestCase {
             ContentHandler handler = new BodyContentHandler();
             new DWGParser().parse(input, handler, metadata);
 
-            assertEquals("image/vnd.dwg", metadata.get(Metadata.CONTENT_TYPE));
+            assertEquals("image/vnd.dwg", metadata.getFormat());
             
             assertNull(metadata.get(Metadata.TITLE));
             assertNull(metadata.get(Metadata.SUBJECT));
@@ -125,7 +125,7 @@ public class DWGParserTest extends TestCase {
             ContentHandler handler = new BodyContentHandler();
             new DWGParser().parse(input, handler, metadata);
 
-            assertEquals("image/vnd.dwg", metadata.get(Metadata.CONTENT_TYPE));
+            assertEquals("image/vnd.dwg", metadata.getFormat());
 
             assertEquals("Test Title", 
                     metadata.get(Metadata.TITLE));

@@ -190,7 +190,7 @@ public class OfficeParser extends AbstractParser {
             POIFSDocumentType type = POIFSDocumentType.detectType(entry);
 
             if (type!=POIFSDocumentType.UNKNOWN) {
-                setType(metadata, type.getType());
+                metadata.setFormat(type.getType().toString());
             }
 
             switch (type) {
@@ -245,10 +245,6 @@ public class OfficeParser extends AbstractParser {
                     }
             }
         }
-    }
-
-    private void setType(Metadata metadata, MediaType type) {
-        metadata.set(Metadata.CONTENT_TYPE, type.toString());
     }
 
 }

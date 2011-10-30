@@ -77,7 +77,7 @@ public class FictionBookParser extends XMLParser {
                 metadata = new Metadata();
 
                 metadata.set(TikaMetadataKeys.RESOURCE_NAME_KEY, attributes.getValue(ATTRIBUTE_ID));
-                metadata.set(Metadata.CONTENT_TYPE, attributes.getValue(ATTRIBUTE_CONTENT_TYPE));
+                metadata.setFormat(attributes.getValue(ATTRIBUTE_CONTENT_TYPE));
             }
         }
 

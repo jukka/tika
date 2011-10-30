@@ -83,7 +83,7 @@ public class MboxParser extends AbstractParser {
 
         BufferedReader reader = new BufferedReader(isr);
 
-        metadata.set(Metadata.CONTENT_TYPE, MBOX_MIME_TYPE);
+        metadata.setFormat(MBOX_MIME_TYPE);
         metadata.set(Metadata.CONTENT_ENCODING, "us-ascii");
 
         XHTMLContentHandler xhtml = new XHTMLContentHandler(handler, metadata);
@@ -235,9 +235,7 @@ public class MboxParser extends AbstractParser {
         } else if (headerTag.equalsIgnoreCase("Content-Type")) {
             // TODO - key off content-type in headers to
             // set mapping to use for content and convert if necessary.
-
-            metadata.add(Metadata.CONTENT_TYPE, headerContent);
-            metadata.add(Metadata.FORMAT, headerContent);
+            metadata.setFormat(headerContent);
         } else {
             metadata.add(EMAIL_HEADER_METADATA_PREFIX + headerTag, headerContent);
         }

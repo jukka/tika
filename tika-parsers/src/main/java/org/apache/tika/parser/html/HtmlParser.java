@@ -110,7 +110,7 @@ public class HtmlParser extends AbstractParser {
         // hint, or the passed content-type hint.
         CharsetDetector detector = new CharsetDetector();
         String incomingCharset = metadata.get(Metadata.CONTENT_ENCODING);
-        String incomingType = metadata.get(Metadata.CONTENT_TYPE);
+        String incomingType = metadata.getFormat();
         if (incomingCharset == null && incomingType != null) {
             // TIKA-341: Use charset in content-type
             MediaType mt = MediaType.parse(incomingType);

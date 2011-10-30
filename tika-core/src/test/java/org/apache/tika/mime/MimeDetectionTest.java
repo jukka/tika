@@ -154,7 +154,7 @@ public class MimeDetectionTest extends TestCase {
                 new ByteArrayInputStream(new byte[0]), namehint));
 
         Metadata typehint = new Metadata();
-        typehint.set(Metadata.CONTENT_TYPE, "text/plain");
+        typehint.setFormat("text/plain");
         assertEquals(MediaType.TEXT_PLAIN, mimeTypes.detect(
                 new ByteArrayInputStream(new byte[0]), typehint));
 

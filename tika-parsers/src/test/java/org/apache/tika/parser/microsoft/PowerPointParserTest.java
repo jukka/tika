@@ -34,9 +34,7 @@ public class PowerPointParserTest extends TikaTest {
             ContentHandler handler = new BodyContentHandler();
             new OfficeParser().parse(input, handler, metadata, new ParseContext());
 
-            assertEquals(
-                    "application/vnd.ms-powerpoint",
-                    metadata.get(Metadata.CONTENT_TYPE));
+            assertEquals("application/vnd.ms-powerpoint", metadata.getFormat());
             assertEquals("Sample Powerpoint Slide", metadata.get(Metadata.TITLE));
             assertEquals("Keith Bennett", metadata.get(Metadata.AUTHOR));
             String content = handler.toString();

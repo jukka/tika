@@ -37,9 +37,7 @@ public class ExcelParserTest extends TestCase {
             context.set(Locale.class, Locale.US);
             new OfficeParser().parse(input, handler, metadata, context);
 
-            assertEquals(
-                    "application/vnd.ms-excel",
-                    metadata.get(Metadata.CONTENT_TYPE));
+            assertEquals("application/vnd.ms-excel", metadata.getFormat());
             assertEquals("Simple Excel document", metadata.get(Metadata.TITLE));
             assertEquals("Keith Bennett", metadata.get(Metadata.AUTHOR));
             
@@ -72,9 +70,7 @@ public class ExcelParserTest extends TestCase {
             ContentHandler handler = new BodyContentHandler();
             new OfficeParser().parse(input, handler, metadata, context);
 
-            assertEquals(
-                    "application/vnd.ms-excel",
-                    metadata.get(Metadata.CONTENT_TYPE));
+            assertEquals("application/vnd.ms-excel", metadata.getFormat());
 
             String content = handler.toString();
 
@@ -145,11 +141,9 @@ public class ExcelParserTest extends TestCase {
             context.set(Locale.class, Locale.US);
             ContentHandler handler = new BodyContentHandler();
             new OfficeParser().parse(input, handler, metadata, context);
-        
-            assertEquals(
-                    "application/vnd.ms-excel",
-                    metadata.get(Metadata.CONTENT_TYPE));
-        
+
+            assertEquals("application/vnd.ms-excel", metadata.getFormat());
+
             String content = handler.toString();
             
             // The first sheet has a pie chart
@@ -183,9 +177,7 @@ public class ExcelParserTest extends TestCase {
             context.set(Locale.class, Locale.US);
             new OfficeParser().parse(input, handler, metadata, context);
 
-            assertEquals(
-                    "application/vnd.ms-excel",
-                    metadata.get(Metadata.CONTENT_TYPE));
+            assertEquals("application/vnd.ms-excel", metadata.getFormat());
             String content = handler.toString();
             assertTrue(content.contains("Number Formats"));
         } finally {

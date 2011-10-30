@@ -189,7 +189,7 @@ public class FLVParser extends AbstractParser {
                     "Unpexpected FLV first previous block size: " + sizePrev);
         }
 
-        metadata.set(Metadata.CONTENT_TYPE, "video/x-flv");
+        metadata.setFormat("video/x-flv");
         metadata.set("hasVideo", Boolean.toString((typeFlags & MASK_VIDEO) != 0));
         metadata.set("hasAudio", Boolean.toString((typeFlags & MASK_AUDIO) != 0));
 

@@ -57,7 +57,7 @@ public class TestChmExtraction extends TestCase {
                             mutex.lock();
                             String text = chmDocInfo.getText();
                             chmDocInfo.getCHMDocInformation(md);
-                            assertEquals(TestParameters.VP_CHM_MIME_TYPE, md.toString().trim());
+                            assertEquals(TestParameters.VP_CHM_MIME_TYPE, md.getFormat());
                             assertTrue(text.length() > 0);
                         } catch (Exception e) {
                             e.printStackTrace();

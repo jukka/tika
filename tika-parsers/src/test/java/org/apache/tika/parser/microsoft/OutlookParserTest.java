@@ -53,9 +53,7 @@ public class OutlookParserTest extends TestCase {
             stream.close();
         }
 
-        assertEquals(
-                "application/vnd.ms-outlook",
-                metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("application/vnd.ms-outlook", metadata.getFormat());
         assertEquals(
                 "Microsoft Outlook Express 6",
                 metadata.get(Metadata.TITLE));
@@ -97,9 +95,7 @@ public class OutlookParserTest extends TestCase {
             stream.close();
         }
 
-        assertEquals(
-                "application/vnd.ms-outlook",
-                metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("application/vnd.ms-outlook", metadata.getFormat());
 
         String content = handler.toString();
         Pattern pattern = Pattern.compile("From");
@@ -126,9 +122,7 @@ public class OutlookParserTest extends TestCase {
             stream.close();
         }
 
-        assertEquals(
-                "application/vnd.ms-outlook",
-                metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("application/vnd.ms-outlook", metadata.getFormat());
         assertEquals(
                 "Welcome to Microsoft Office Outlook 2003",
                 metadata.get(Metadata.TITLE));

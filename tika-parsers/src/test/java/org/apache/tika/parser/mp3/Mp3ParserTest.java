@@ -50,7 +50,7 @@ public class Mp3ParserTest extends TestCase {
             stream.close();
         }
 
-        assertEquals("audio/mpeg", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("audio/mpeg", metadata.getFormat());
         assertEquals("Test Title", metadata.get(Metadata.TITLE));
         assertEquals("Test Artist", metadata.get(Metadata.AUTHOR));
 
@@ -85,7 +85,7 @@ public class Mp3ParserTest extends TestCase {
         }
 
         // Check core properties
-        assertEquals("audio/mpeg", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("audio/mpeg", metadata.getFormat());
         assertEquals("Test Title", metadata.get(Metadata.TITLE));
         assertEquals("Test Artist", metadata.get(Metadata.AUTHOR));
 
@@ -134,7 +134,7 @@ public class Mp3ParserTest extends TestCase {
             stream.close();
         }
 
-        assertEquals("audio/mpeg", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("audio/mpeg", metadata.getFormat());
         assertEquals("Test Title", metadata.get(Metadata.TITLE));
         assertEquals("Test Artist", metadata.get(Metadata.AUTHOR));
 
@@ -168,7 +168,7 @@ public class Mp3ParserTest extends TestCase {
             stream.close();
         }
 
-        assertEquals("audio/mpeg", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("audio/mpeg", metadata.getFormat());
         assertEquals("Test Title", metadata.get(Metadata.TITLE));
         assertEquals("Test Artist", metadata.get(Metadata.AUTHOR));
 
@@ -206,7 +206,7 @@ public class Mp3ParserTest extends TestCase {
             stream.close();
         }
 
-        assertEquals("audio/mpeg", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("audio/mpeg", metadata.getFormat());
         assertEquals("Test Title", metadata.get(Metadata.TITLE));
         assertEquals("Test Artist", metadata.get(Metadata.AUTHOR));
 
@@ -271,7 +271,7 @@ public class Mp3ParserTest extends TestCase {
            stream.close();
        }
 
-       assertEquals("audio/mpeg", metadata.get(Metadata.CONTENT_TYPE));
+       assertEquals("audio/mpeg", metadata.getFormat());
        assertEquals("Plus loin vers l'ouest", metadata.get(Metadata.TITLE));
        assertEquals("Merzhin", metadata.get(Metadata.AUTHOR));
 
@@ -306,7 +306,7 @@ public class Mp3ParserTest extends TestCase {
        }
 
        // Check we coud get the headers from the start
-       assertEquals("audio/mpeg", metadata.get(Metadata.CONTENT_TYPE));
+       assertEquals("audio/mpeg", metadata.getFormat());
        assertEquals("Girl you have no faith in medicine", metadata.get(Metadata.TITLE));
        assertEquals("The White Stripes", metadata.get(Metadata.AUTHOR));
 

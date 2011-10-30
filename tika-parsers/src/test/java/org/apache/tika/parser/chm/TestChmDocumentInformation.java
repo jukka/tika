@@ -37,8 +37,7 @@ public class TestChmDocumentInformation extends TestCase {
     public void testGetCHMDocInformation() throws TikaException, IOException {
         Metadata md = new Metadata();
         chmDoc.getCHMDocInformation(md);
-        Assert.assertEquals(TestParameters.VP_CHM_MIME_TYPE, md.toString()
-                .trim());
+        Assert.assertEquals(TestParameters.VP_CHM_MIME_TYPE, md.getFormat());
     }
 
     public void testGetText() throws TikaException {

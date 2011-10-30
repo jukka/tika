@@ -34,8 +34,7 @@ public class EpubParserTest extends TestCase {
             ContentHandler handler = new BodyContentHandler();
             new EpubParser().parse(input, handler, metadata);
 
-            assertEquals("application/epub+zip",
-                    metadata.get(Metadata.CONTENT_TYPE));
+            assertEquals("application/epub+zip", metadata.getFormat());
             assertEquals("en",
                     metadata.get(Metadata.LANGUAGE));
             assertEquals("This is an ePub test publication for Tika.",

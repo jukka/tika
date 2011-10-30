@@ -64,7 +64,7 @@ public class OOXMLParserTest extends TikaTest {
 
             assertEquals(
                     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                    metadata.get(Metadata.CONTENT_TYPE));
+                    metadata.getFormat());
             assertEquals("Simple Excel document", metadata.get(Metadata.TITLE));
             assertEquals("Keith Bennett", metadata.get(Metadata.AUTHOR));
             String content = handler.toString();
@@ -94,7 +94,7 @@ public class OOXMLParserTest extends TikaTest {
 
             assertEquals(
                     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                    metadata.get(Metadata.CONTENT_TYPE));
+                    metadata.getFormat());
 
             String content = handler.toString();
 
@@ -194,7 +194,7 @@ public class OOXMLParserTest extends TikaTest {
                 assertEquals(
                         "Mime-type checking for " + filename,
                         mimeTypes[i],
-                        metadata.get(Metadata.CONTENT_TYPE));
+                        metadata.getFormat());
                 assertEquals("Attachment Test", metadata.get(Metadata.TITLE));
                 assertEquals("Rajiv", metadata.get(Metadata.AUTHOR));
                 
@@ -246,7 +246,7 @@ public class OOXMLParserTest extends TikaTest {
             parser.parse(TikaInputStream.get(input), handler, metadata, context);
             assertEquals(
                     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                    metadata.get(Metadata.CONTENT_TYPE));
+                    metadata.getFormat());
             assertEquals("Sample Word Document", metadata.get(Metadata.TITLE));
             assertEquals("Keith Bennett", metadata.get(Metadata.AUTHOR));
             assertTrue(handler.toString().contains("Sample Word Document"));
@@ -271,7 +271,7 @@ public class OOXMLParserTest extends TikaTest {
             parser.parse(TikaInputStream.get(input), handler, metadata, context);
             assertEquals(
                     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                    metadata.get(Metadata.CONTENT_TYPE));
+                    metadata.getFormat());
             assertTrue(handler.toString().contains("snoska"));
         } finally {
             input.close();
@@ -321,7 +321,7 @@ public class OOXMLParserTest extends TikaTest {
       Metadata metadata = result.metadata;
       assertEquals(
                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                   metadata.get(Metadata.CONTENT_TYPE));
+                   metadata.getFormat());
       assertEquals("Sample Word Document", metadata.get(Metadata.TITLE));
       assertEquals("Keith Bennett", metadata.get(Metadata.AUTHOR));
       assertTrue(xml.contains("Sample Word Document"));
@@ -399,7 +399,7 @@ public class OOXMLParserTest extends TikaTest {
             String xml = sw.toString();
             assertEquals(
                     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                    metadata.get(Metadata.CONTENT_TYPE));
+                    metadata.getFormat());
             // Check that custom headings came through
             assertTrue(xml.contains("<img"));
         } finally {
@@ -425,7 +425,7 @@ public class OOXMLParserTest extends TikaTest {
 
             assertEquals(
                     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                    metadata.get(Metadata.CONTENT_TYPE));
+                    metadata.getFormat());
 
             assertEquals("true", metadata.get(TikaMetadataKeys.PROTECTED));
         } finally {
@@ -451,7 +451,7 @@ public class OOXMLParserTest extends TikaTest {
 
             assertEquals(
                     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                    metadata.get(Metadata.CONTENT_TYPE));
+                    metadata.getFormat());
 
             assertEquals("true", metadata.get(TikaMetadataKeys.PROTECTED));
             

@@ -49,8 +49,10 @@ public class MetadataExtractor {
     }
 
     public void extract(Metadata metadata) throws TikaException {
-        addProperty(metadata, Metadata.CONTENT_TYPE, type);
-        
+        if (type != null) {
+            metadata.setFormat(type);
+        }
+
         if (extractor.getDocument() != null ||
               (extractor instanceof XSSFEventBasedExcelExtractor && 
                extractor.getPackage() != null)) {

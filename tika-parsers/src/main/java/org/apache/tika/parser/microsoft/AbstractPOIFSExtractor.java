@@ -62,7 +62,7 @@ abstract class AbstractPOIFSExtractor {
                metadata.set(Metadata.RESOURCE_NAME_KEY, filename);
            }
            if(mediaType != null) {
-               metadata.set(Metadata.CONTENT_TYPE, mediaType);
+               metadata.setFormat(mediaType);
            }
 
            if (extractor.shouldParseEmbedded(metadata)) {
@@ -126,7 +126,7 @@ abstract class AbstractPOIFSExtractor {
                 }
                 embedded = TikaInputStream.get(data);
             } else {
-                metadata.set(Metadata.CONTENT_TYPE, type.getType().toString());
+                metadata.setFormat(type.getType().toString());
                 metadata.set(Metadata.RESOURCE_NAME_KEY, dir.getName() + '.' + type.getExtension());
             }
 

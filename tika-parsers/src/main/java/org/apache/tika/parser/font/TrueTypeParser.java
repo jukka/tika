@@ -63,7 +63,7 @@ public class TrueTypeParser extends AbstractParser {
             font = parser.parseTTF(stream);
         }
 
-        metadata.set(Metadata.CONTENT_TYPE, TYPE.toString());
+        metadata.setFormat(TYPE.toString());
         metadata.set(DublinCore.DATE, font.getHeader().getCreated().getTime());
         metadata.set(
                 Property.internalDate(DublinCore.MODIFIED),

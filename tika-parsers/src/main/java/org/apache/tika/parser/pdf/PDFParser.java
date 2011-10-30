@@ -91,7 +91,7 @@ public class PDFParser extends AbstractParser {
                     // Ignore
                 }
             }
-            metadata.set(Metadata.CONTENT_TYPE, "application/pdf");
+            metadata.setFormat("application/pdf");
             extractMetadata(pdfDocument, metadata);
             PDF2XHTML.process(pdfDocument, handler, metadata, extractAnnotationText, enableAutoSpace);
         } finally {

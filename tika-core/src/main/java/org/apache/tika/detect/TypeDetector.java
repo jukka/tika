@@ -43,7 +43,7 @@ public class TypeDetector implements Detector {
      */
     public MediaType detect(InputStream input, Metadata metadata) {
         // Look for a type hint in the input metadata
-        String hint = metadata.get(Metadata.CONTENT_TYPE);
+        String hint = metadata.getFormat();
         if (hint != null) {
             MediaType type = MediaType.parse(hint);
             if (type != null) {

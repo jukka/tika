@@ -86,24 +86,24 @@ class PackageExtractor {
 
         // Select decompression or unpacking mechanism based on the two bytes
         if (a == 'B' && b == 'Z') {
-            metadata.set(Metadata.CONTENT_TYPE, "application/x-bzip");
+            metadata.setFormat("application/x-bzip");
             decompress(new BZip2CompressorInputStream(stream), xhtml);
         } else if (a == 0x1f && b == 0x8b) {
-            metadata.set(Metadata.CONTENT_TYPE, "application/x-gzip");
+            metadata.setFormat("application/x-gzip");
             decompress(new GZIPInputStream(stream), xhtml);
         } else if (a == 'P' && b == 'K') {
-            metadata.set(Metadata.CONTENT_TYPE, "application/zip");
+            metadata.setFormat("application/zip");
             unpack(new ZipArchiveInputStream(stream), xhtml);
         } else if ((a == '0' && b == '7')
                 || (a == 0x71 && b == 0xc7)
                 || (a == 0xc7 && b == 0x71)) {
-            metadata.set(Metadata.CONTENT_TYPE, "application/x-cpio");
+            metadata.setFormat("application/x-cpio");
             unpack(new CpioArchiveInputStream(stream), xhtml);
         } else if (a == '=' && (b == '<' || b == '!')) {
-            metadata.set(Metadata.CONTENT_TYPE, "application/x-archive");
+            metadata.setFormat("application/x-archive");
             unpack(new ArArchiveInputStream(stream), xhtml);
         } else {
-            metadata.set(Metadata.CONTENT_TYPE, "application/x-tar");
+            metadata.setFormat("application/x-tar");
             unpack(new TarArchiveInputStream(stream), xhtml);
         }
 

@@ -154,12 +154,17 @@ public class Metadata implements CreativeCommons, DublinCore, Geographic, HttpHe
      *          of the metadata.
      * @return the value associated to the specified metadata name.
      */
-    public String get(final String name) {
-        String[] values = metadata.get(name);
-        if (values == null) {
-            return null;
+    public String get(String name) {
+        Property property = Property.getProperty(name);
+        if (property != null) {
+            return get(property);
         } else {
-            return values[0];
+            String[] values = metadata.get(name);
+            if (values == null) {
+                return null;
+            } else {
+                return values[0];
+            }
         }
     }
 
@@ -171,7 +176,17 @@ public class Metadata implements CreativeCommons, DublinCore, Geographic, HttpHe
      * @return property value, or <code>null</code> if the property is not set
      */
     public String get(Property property) {
-        return get(property.getName());
+        String[] values = metadata.get(property.getName());
+        if (values == null) {
+            Property canonical = property.getAliasOf();
+            if (canonical != null) {
+                values = metadata.get(canonical.getName());
+        }
+        if  (values != null && values.length > 0) {
+            return values[0];
+        } else {
+            return null;
+        }
     }
     
     /**
@@ -275,7 +290,7 @@ public class Metadata implements CreativeCommons, DublinCore, Geographic, HttpHe
             (Enumeration<String>) properties.propertyNames();
         while (names.hasMoreElements()) {
             String name = names.nextElement();
-            metadata.put(name, new String[] { properties.getProperty(name) });
+            set(name, properties.getProperty(name));
         }
     }
 
@@ -290,7 +305,12 @@ public class Metadata implements CreativeCommons, DublinCore, Geographic, HttpHe
      *          the metadata value.
      */
     public void set(String name, String value) {
-        metadata.put(name, new String[] { value });
+        Property property = Property.getProperty(name);
+        if (property != null) {
+            set(property, value);
+        } else {
+            metadata.put(name, new String[] { value });
+        }
     }
 
     /**
@@ -301,7 +321,12 @@ public class Metadata implements CreativeCommons, DublinCore, Geographic, HttpHe
      * @param value    property value
      */
     public void set(Property property, String value) {
-        set(property.getName(), value);
+        metadata.put(property.getName(), new String[] { value });
+
+        Property canonical = property.getAliasOf();
+        if (canonical != null && !metadata.containsKey(canonical.getName())) {
+            set(canonical, value);
+        }
     }
 
     /**
@@ -318,7 +343,7 @@ public class Metadata implements CreativeCommons, DublinCore, Geographic, HttpHe
         if(property.getValueType() != Property.ValueType.INTEGER) {
             throw new PropertyTypeException(Property.ValueType.INTEGER, property.getValueType());
         }
-        set(property.getName(), Integer.toString(value));
+        set(property, Integer.toString(value));
     }
 
     /**
@@ -336,7 +361,7 @@ public class Metadata implements CreativeCommons, DublinCore, Geographic, HttpHe
               property.getValueType() != Property.ValueType.RATIONAL) {
             throw new PropertyTypeException(Property.ValueType.REAL, property.getValueType());
         }
-        set(property.getName(), Double.toString(value));
+        set(property, Double.toString(value));
     }
 
     /**
@@ -353,7 +378,7 @@ public class Metadata implements CreativeCommons, DublinCore, Geographic, HttpHe
         if(property.getValueType() != Property.ValueType.DATE) {
             throw new PropertyTypeException(Property.ValueType.DATE, property.getValueType());
         }
-        set(property.getName(), formatDate(date));
+        set(property, formatDate(date));
     }
 
     /**
@@ -374,6 +399,18 @@ public class Metadata implements CreativeCommons, DublinCore, Geographic, HttpHe
     public int size() {
         return metadata.size();
     }
+
+    //----------------------------------------------------------< DublinCore >
+
+    public String getFormat() {
+        return get(DC_FORMAT);
+    }
+
+    public void setFormat(String format) {
+        set(DC_FORMAT, format);
+    }
+
+    //--------------------------------------------------------------< Object >
 
     public boolean equals(Object o) {
 

@@ -66,11 +66,11 @@ public class AudioParser extends AbstractParser {
             AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(stream);
             Type type = fileFormat.getType();
             if (type == Type.AIFC || type == Type.AIFF) {
-                metadata.set(Metadata.CONTENT_TYPE, "audio/x-aiff");
+                metadata.setFormat("audio/x-aiff");
             } else if (type == Type.AU || type == Type.SND) {
-                metadata.set(Metadata.CONTENT_TYPE, "audio/basic");
+                metadata.setFormat("audio/basic");
             } else if (type == Type.WAVE) {
-                metadata.set(Metadata.CONTENT_TYPE, "audio/x-wav");
+                metadata.setFormat("audio/x-wav");
             }
 
             AudioFormat audioFormat = fileFormat.getFormat();

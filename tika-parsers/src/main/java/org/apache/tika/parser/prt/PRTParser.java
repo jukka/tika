@@ -84,7 +84,7 @@ public class PRTParser extends AbstractParser {
           metadata.set(Metadata.CREATION_DATE, formattedDate);
           metadata.set(Metadata.DATE, formattedDate);
        }
-       metadata.set(Metadata.CONTENT_TYPE, PRT_MIME_TYPE);
+       metadata.setFormat(PRT_MIME_TYPE);
        
        // The description, if set, is the next up-to-500 bytes
        byte[] desc = new byte[500];

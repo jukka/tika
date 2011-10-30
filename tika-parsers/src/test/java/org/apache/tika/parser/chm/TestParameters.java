@@ -56,7 +56,7 @@ public class TestParameters {
     }
 
     /* Verification points */
-    static final String VP_CHM_MIME_TYPE = "Content-Type=application/x-chm";
+    static final String VP_CHM_MIME_TYPE = "application/x-chm";
     static final String VP_EXTRACTED_TEXT = "The TCard method accepts only numeric arguments";
     static final String VP_ISTF_SIGNATURE = "ITSF";
     static final String VP_ISTP_SIGNATURE = "ITSP";

@@ -123,10 +123,8 @@ public class CHMDocumentInformation {
     public void getCHMDocInformation(Metadata metadata) throws TikaException,
             IOException {
         if (getChmExtractor() != null) {
-            /* Checking if file is a chm, done during creating chmItsf header */
-            metadata.add(Metadata.CONTENT_TYPE, "application/x-chm");
-        } else {
-            metadata.add(Metadata.CONTENT_TYPE, "unknown");
+            // Checking if file is a chm, done during creating chmItsf header
+            metadata.setFormat("application/x-chm");
         }
     }
 

@@ -220,8 +220,7 @@ public abstract class AbstractOOXMLExtractor implements OOXMLExtractor {
                 name.substring(name.lastIndexOf('/') + 1));
 
         // Get the content type
-        metadata.set(
-                Metadata.CONTENT_TYPE, part.getContentType());
+        metadata.setFormat(part.getContentType());
 
         // Call the recursing handler
         if (embeddedExtractor.shouldParseEmbedded(metadata)) {

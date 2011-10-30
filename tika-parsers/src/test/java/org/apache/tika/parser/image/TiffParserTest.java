@@ -31,7 +31,7 @@ public class TiffParserTest extends TestCase {
 
     public void testTIFF() throws Exception {
         Metadata metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, "image/tiff");
+        metadata.setFormat("image/tiff");
         InputStream stream =
             getClass().getResourceAsStream("/test-documents/testTIFF.tif");
         parser.parse(stream, new DefaultHandler(), metadata);

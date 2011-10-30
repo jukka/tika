@@ -74,12 +74,12 @@ public class AutoDetectParserTest extends TestCase {
         try {
             Metadata metadata = new Metadata();
             metadata.set(Metadata.RESOURCE_NAME_KEY, tp.resourceStatedName);
-            metadata.set(Metadata.CONTENT_TYPE, tp.statedType);
+            metadata.setFormat(tp.statedType);
             ContentHandler handler = new BodyContentHandler();
             new AutoDetectParser().parse(input, handler, metadata);
 
             assertEquals("Bad content type: " + tp,
-                    tp.realType, metadata.get(Metadata.CONTENT_TYPE));
+                    tp.realType, metadata.getFormat());
 
             if (tp.expectedContentFragment != null) {
                assertTrue("Expected content not found: " + tp,

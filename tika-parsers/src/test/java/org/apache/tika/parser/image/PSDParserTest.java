@@ -34,7 +34,7 @@ public class PSDParserTest extends TestCase {
      */
     public void testPSD() throws Exception {
         Metadata metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, "image/x-psd");
+        metadata.setFormat("image/x-psd");
         InputStream stream =
             getClass().getResourceAsStream("/test-documents/testPSD.psd");
         parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());

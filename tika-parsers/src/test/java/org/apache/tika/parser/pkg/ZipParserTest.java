@@ -43,7 +43,7 @@ public class ZipParserTest extends AbstractPkgTest {
             stream.close();
         }
 
-        assertEquals("application/zip", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("application/zip", metadata.getFormat());
         String content = handler.toString();
         assertTrue(content.contains("testEXCEL.xls"));
         assertTrue(content.contains("Sample Excel Worksheet"));

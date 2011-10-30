@@ -16,6 +16,7 @@
  */
 package org.apache.tika.metadata;
 
+
 /**
  * A collection of Dublin Core metadata names.
  * 
@@ -24,14 +25,60 @@ package org.apache.tika.metadata;
 public interface DublinCore {
 
     /**
-     * Typically, Format may include the media-type or dimensions of the
-     * resource. Format may be used to determine the software, hardware or
-     * other equipment needed to display or operate the resource. Examples
-     * of dimensions include size and duration. Recommended best practice is
-     * to select a value from a controlled vocabulary (for example, the list
-     * of Internet Media Types [MIME] defining computer media formats).
+     * The Dublin Core namespace URI. The XMP specification notes:
+     * <blockquote>
+     * The Dublin Core elements as defined by DCMI all have URIs of the
+     * form "http://purl.org/dc/elements/1.1/&lt;name&gt;" where the
+     * &lt;name&gt; part differs. The Dublin Core elements are defined
+     * in XMP as properties using the namespace URI
+     * "http://purl.org/dc/elements/1.1/"; the local names are the
+     * leaf part of the DCMI URI.
+     * </blockquote>
+     *
+     * @since Apache Tika 1.0
+     */
+    String DC = "http://purl.org/dc/elements/1.1/";
+
+    /**
+     * @deprecated Use {@link #DC_FORMAT} instead.
      */
     String FORMAT = "format";
+
+    /**
+     * The Dublin Core <code>format</code> property. The XMP specification says:
+     * <blockquote>
+     * DCMI definition: The file format, physical medium, or dimensions
+     * of the resource.
+     * <p>
+     * DCMI comment: Examples of dimensions include size and duration.
+     * Recommended best practice is to use a controlled vocabulary such
+     * as the list of Internet Media Types [MIME].
+     * <p>
+     * XMP addition: XMP usage is a MIME type. Dimensions would be stored
+     * using a media-specific property, beyond the scope of this document. 
+     * </blockquote>
+     *
+     * @since Apache Tika 1.0
+     */
+    Property DC_FORMAT = Property.internalMIMEType("dc:format");
+
+    /**
+     * Returns the value of the Dublin Core <code>format</code> property.
+     *
+     * @since Apache Tika 1.0
+     * @see #DC_FORMAT
+     * @return value of the Dublin Core <code>format</code> property
+     */
+    String getFormat();
+
+    /**
+     * Sets the value of the Dublin Core <code>format</code> property.
+     *
+     * @since Apache Tika 1.0
+     * @see #DC_FORMAT
+     * @param format value of the Dublin Core <code>format</code> property
+     */
+    void setFormat(String format);
 
     /**
      * Recommended best practice is to identify the resource by means of

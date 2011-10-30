@@ -77,7 +77,7 @@ public abstract class AbstractPkgTest extends TestCase {
             Metadata metadata, ParseContext context) throws IOException,
             SAXException, TikaException {
          filenames.add(metadata.get(Metadata.RESOURCE_NAME_KEY));
-         mediatypes.add(metadata.get(Metadata.CONTENT_TYPE));
+         mediatypes.add(metadata.getFormat());
          
          lastSeenStart = new byte[32];
          stream.read(lastSeenStart);

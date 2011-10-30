@@ -198,7 +198,7 @@ public class CompositeParser extends AbstractParser {
 
     protected Parser getParser(Metadata metadata, ParseContext context) {
         Map<MediaType, Parser> map = getParsers(context);
-        MediaType type = MediaType.parse(metadata.get(Metadata.CONTENT_TYPE));
+        MediaType type = MediaType.parse(metadata.getFormat());
         if (type != null) {
            // We always work on the normalised, canonical form
            type = registry.normalize(type);

@@ -42,7 +42,7 @@ public class TarParserTest extends AbstractPkgTest {
             stream.close();
         }
 
-        assertEquals("application/x-tar", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("application/x-tar", metadata.getFormat());
         String content = handler.toString();
         assertTrue(content.contains("test-documents/testEXCEL.xls"));
         assertTrue(content.contains("Sample Excel Worksheet"));

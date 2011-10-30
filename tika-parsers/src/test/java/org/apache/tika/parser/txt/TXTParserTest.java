@@ -47,7 +47,7 @@ public class TXTParserTest extends TestCase {
                 new ParseContext());
         String content = writer.toString();
 
-        assertEquals("text/plain", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("text/plain", metadata.getFormat());
         
         // TIKA-501: Remove language detection from TXTParser
         assertNull(metadata.get(Metadata.CONTENT_LANGUAGE));
@@ -67,7 +67,7 @@ public class TXTParserTest extends TestCase {
         parser.parse(
                 new ByteArrayInputStream(text.getBytes("UTF-8")),
                 handler, metadata, new ParseContext());
-        assertEquals("text/plain", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("text/plain", metadata.getFormat());
         assertEquals("UTF-8", metadata.get(Metadata.CONTENT_ENCODING));
 
         assertTrue(handler.toString().contains(text));
@@ -78,7 +78,7 @@ public class TXTParserTest extends TestCase {
         Metadata metadata = new Metadata();
         parser.parse(
                 new ByteArrayInputStream(new byte[0]), handler, metadata, new ParseContext());
-        assertEquals("text/plain", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("text/plain", metadata.getFormat());
         assertEquals("\n", handler.toString());
     }
 
@@ -139,7 +139,7 @@ public class TXTParserTest extends TestCase {
         assertEquals("UTF-8", metadata.get(Metadata.CONTENT_ENCODING));
 
         metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, "text/html; charset=ISO-8859-1");
+        metadata.setFormat("text/html; charset=ISO-8859-1");
         parser.parse(
                 new ByteArrayInputStream(test2.getBytes("UTF-8")),
                 new BodyContentHandler(),  metadata, new ParseContext());
@@ -156,7 +156,7 @@ public class TXTParserTest extends TestCase {
         };
         Metadata metadata = new Metadata();
         parser.parse(new ByteArrayInputStream(input), handler, metadata, new ParseContext());
-        assertEquals("text/plain", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("text/plain", metadata.getFormat());
         assertEquals(msg, expected, handler.toString());
     }
 
@@ -187,7 +187,7 @@ public class TXTParserTest extends TestCase {
                 metadata,
                 new ParseContext());
 
-        assertEquals("text/plain", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("text/plain", metadata.getFormat());
         assertEquals("IBM866", metadata.get(Metadata.CONTENT_ENCODING));
     }
 
@@ -200,7 +200,7 @@ public class TXTParserTest extends TestCase {
                 metadata,
                 new ParseContext());
 
-        assertEquals("text/plain", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("text/plain", metadata.getFormat());
         assertEquals("IBM500", metadata.get(Metadata.CONTENT_ENCODING));
         
         // Additional check that it isn't too eager on short blocks of text

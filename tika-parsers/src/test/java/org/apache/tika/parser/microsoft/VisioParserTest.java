@@ -35,9 +35,7 @@ public class VisioParserTest extends TestCase {
             ContentHandler handler = new BodyContentHandler();
             new OfficeParser().parse(input, handler, metadata, new ParseContext());
 
-            assertEquals(
-                    "application/vnd.visio",
-                    metadata.get(Metadata.CONTENT_TYPE));
+            assertEquals("application/vnd.visio", metadata.getFormat());
             assertEquals("", metadata.get(Metadata.TITLE));
             assertEquals("Hogwarts", metadata.get(Metadata.AUTHOR));
             String content = handler.toString();

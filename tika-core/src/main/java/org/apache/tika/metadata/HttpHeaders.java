@@ -36,7 +36,25 @@ public interface HttpHeaders {
 
     String CONTENT_MD5 = "Content-MD5";
 
+    /** @deprecated Use the {@link DublinCore#DC_FORMAT} property. */
     String CONTENT_TYPE = "Content-Type";
+
+    /**
+     * Alias of the Dublin Core <code>format</code> property.
+     * <p>
+     * In Apache Tika versions before 1.0 the type of a document was
+     * stored using the {@link #CONTENT_TYPE} metadata key, but now
+     * the correct property to use is {@link DublinCore#DC_FORMAT}.
+     * <p>
+     * This alias property exists for backwards-compatibility with Tika
+     * clients and parser implementations that still use the
+     * {@link #CONTENT_TYPE} metadata key.
+     *
+     * @see https://issues.apache.org/jira/browse/TIKA-759
+     * @since Apache Tika 1.0
+     */
+    Property HTTP_CONTENT_TYPE =
+            Property.alias(CONTENT_TYPE, DublinCore.DC_FORMAT);
 
     Property LAST_MODIFIED = 
         Property.internalDate("Last-Modified");

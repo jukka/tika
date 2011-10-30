@@ -66,7 +66,7 @@ public class RTFParserTest extends TikaTest {
                      new ParseContext());
         String content = writer.toString();
 
-        assertEquals("application/rtf", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("application/rtf", metadata.getFormat());
         assertContains("Test", content);
         assertContains("indexation Word", content);
     }

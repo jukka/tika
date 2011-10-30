@@ -550,7 +550,7 @@ public class TikaGUI extends JFrame
      */
     private static class ImageDocumentSelector implements DocumentSelector {
       public boolean select(Metadata metadata) {
-         String type = metadata.get(Metadata.CONTENT_TYPE);
+         String type = metadata.getFormat();
          return type != null && type.startsWith("image/");
       }
     }

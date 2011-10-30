@@ -103,17 +103,17 @@ public class DWGParser extends AbstractParser {
         xhtml.startDocument();
 
         if (version.equals("AC1015")) {
-            metadata.set(Metadata.CONTENT_TYPE, TYPE.toString());
+            metadata.setFormat(TYPE.toString());
             if (skipTo2000PropertyInfoSection(stream, header)) {
                 get2000Props(stream,metadata,xhtml);
             }
         } else if (version.equals("AC1018")) {
-            metadata.set(Metadata.CONTENT_TYPE, TYPE.toString());
+            metadata.setFormat(TYPE.toString());
             if (skipToPropertyInfoSection(stream, header)) {
                 get2004Props(stream,metadata,xhtml);
             }
         } else if (version.equals("AC1021") || version.equals("AC1024")) {
-            metadata.set(Metadata.CONTENT_TYPE, TYPE.toString());
+            metadata.setFormat(TYPE.toString());
             if (skipToPropertyInfoSection(stream, header)) {
                 get2007and2010Props(stream,metadata,xhtml);
             }

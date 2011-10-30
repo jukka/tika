@@ -74,7 +74,7 @@ class MailContentHandler implements ContentHandler {
         // sub part without damaging the main metadata
 
         Metadata submd = new Metadata();
-        submd.set(Metadata.CONTENT_TYPE, body.getMimeType());
+        submd.setFormat(body.getMimeType());
         submd.set(Metadata.CONTENT_ENCODING, body.getCharset());
 
         try {

@@ -119,7 +119,7 @@ public class HtmlParserTest extends TestCase {
         String content = new Tika().parseToString(
                 HtmlParserTest.class.getResourceAsStream(path), metadata);
 
-        assertEquals("application/xhtml+xml", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("application/xhtml+xml", metadata.getFormat());
         assertEquals("XHTML test document", metadata.get(Metadata.TITLE));
 
         assertEquals("Tika Developers", metadata.get("Author"));
@@ -277,7 +277,7 @@ public class HtmlParserTest extends TestCase {
         assertEquals("UTF-8", metadata.get(Metadata.CONTENT_ENCODING));
 
         metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, "text/html; charset=ISO-8859-1");
+        metadata.setFormat("text/html; charset=ISO-8859-1");
         new HtmlParser().parse (
                 new ByteArrayInputStream(test.getBytes("UTF-8")),
                 new BodyContentHandler(),  metadata, new ParseContext());
@@ -363,7 +363,7 @@ public class HtmlParserTest extends TestCase {
         assertEquals("UTF-8", metadata.get(Metadata.CONTENT_ENCODING));
 
         metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, "charset=ISO-8859-1;text/html");
+        metadata.setFormat("charset=ISO-8859-1;text/html");
         new HtmlParser().parse (
                 new ByteArrayInputStream(test.getBytes("UTF-8")),
                 new BodyContentHandler(),  metadata, new ParseContext());

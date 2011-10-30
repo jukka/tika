@@ -120,7 +120,7 @@ public class AutoDetectParser extends CompositeParser {
 
             // Automatically detect the MIME type of the document
             MediaType type = detector.detect(tis, metadata);
-            metadata.set(Metadata.CONTENT_TYPE, type.toString());
+            metadata.setFormat(type.toString());
 
             // TIKA-216: Zip bomb prevention
             SecureContentHandler sch = new SecureContentHandler(handler, tis);

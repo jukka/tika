@@ -32,8 +32,11 @@ import org.xml.sax.SAXException;
 public class ChmParser extends AbstractParser {
 
     private static final long serialVersionUID = 5938777307516469802L;
-    private static final Set<MediaType> SUPPORTED_TYPES = Collections
-            .singleton(MediaType.application("chm"));
+
+    private static final MediaType CHM = MediaType.application("chm");
+
+    private static final Set<MediaType> SUPPORTED_TYPES =
+            Collections.singleton(CHM);
 
     public Set<MediaType> getSupportedTypes(ParseContext context) {
         return SUPPORTED_TYPES;
@@ -44,7 +47,7 @@ public class ChmParser extends AbstractParser {
             Metadata metadata, ParseContext context) throws IOException,
             SAXException, TikaException {
         CHMDocumentInformation chmInfo = CHMDocumentInformation.load(stream);
-        metadata.set(Metadata.CONTENT_TYPE, "chm");
+        metadata.setFormat(CHM.toString());
         extractMetadata(chmInfo, metadata);
         CHM2XHTML.process(chmInfo, handler);
     }

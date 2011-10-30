@@ -65,7 +65,7 @@ public class ImageParser extends AbstractParser {
             InputStream stream, ContentHandler handler,
             Metadata metadata, ParseContext context)
             throws IOException, SAXException, TikaException {
-        String type = metadata.get(Metadata.CONTENT_TYPE);
+        String type = metadata.getFormat();
         if (type != null) {
             // Java has a different idea of the BMP mime type to
             //  what the canonical one is, fix this up.

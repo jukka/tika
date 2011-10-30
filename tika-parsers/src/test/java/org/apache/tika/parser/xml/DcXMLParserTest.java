@@ -35,9 +35,7 @@ public class DcXMLParserTest extends TestCase {
             ContentHandler handler = new BodyContentHandler();
             new DcXMLParser().parse(input, handler, metadata);
 
-            assertEquals(
-                    "application/xml",
-                    metadata.get(Metadata.CONTENT_TYPE));
+            assertEquals("application/xml", metadata.getFormat());
             assertEquals("Tika test document", metadata.get(Metadata.TITLE));
             assertEquals("Rida Benjelloun", metadata.get(Metadata.CREATOR));
             assertEquals(

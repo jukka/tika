@@ -61,23 +61,47 @@ public final class Property implements Comparable<Property> {
      */
     private final Set<String> choices;
 
+    /**
+     * The canonical property of which this one is an alias, or
+     * <code>null</code> if this is not an alias property.
+     */
+    private final Property aliasOf;
+
     private Property(
             String name, boolean internal, PropertyType propertyType,
-            ValueType valueType, String[] choices) {
+            ValueType valueType, Set<String> choices, Property aliasOf) {
         this.name = name;
         this.internal = internal;
         this.propertyType = propertyType;
         this.valueType = valueType;
-        if (choices != null) {
-            this.choices = Collections.unmodifiableSet(
-                    new HashSet<String>(Arrays.asList(choices.clone())));
-        } else {
-            this.choices = null;
-        }
+        this.choices = choices;
+        this.aliasOf = aliasOf;
 
         synchronized (properties) {
             properties.put(name, this);
         }
+    }
+
+    private static Set<String> unmodifiableSet(String[] array) {
+        if (array != null) {
+            Set<String> set = new HashSet<String>();
+            set.addAll(Arrays.asList(array));
+            return Collections.unmodifiableSet(set);
+        } else {
+            return null;
+        }
+    }
+
+    private Property(String name, Property aliasOf) {
+        this(name, aliasOf.internal, aliasOf.propertyType,
+                aliasOf.valueType, aliasOf.choices, aliasOf);
+    }
+
+    private Property(
+            String name, boolean internal, PropertyType propertyType,
+            ValueType valueType, String[] choices) {
+        this(name, internal, propertyType, valueType,
+                unmodifiableSet(choices), null);
     }
 
     private Property(
@@ -127,6 +151,17 @@ public final class Property implements Comparable<Property> {
         return choices;
     }
 
+    /**
+     * Returns the canonical property of which this one is an alias,
+     * or <code>null</code> if this is not an alias property.
+     *
+     * @since Apache Tika 1.0
+     * @return canonical property, or <code>null</code>
+     */
+    public Property getAliasOf() {
+        return aliasOf;
+    }
+
     public static SortedSet<Property> getProperties(String prefix) {
         SortedSet<Property> set = new TreeSet<Property>();
         String p = prefix + ":";
@@ -138,6 +173,16 @@ public final class Property implements Comparable<Property> {
             }
         }
         return set;
+    }
+
+    public static Property getProperty(String name) {
+        synchronized (properties) {
+            return properties.get(name);
+        }
+    }
+
+    public static Property alias(String name, Property aliasOf) {
+        return new Property(name, aliasOf);
     }
 
     public static Property internalBoolean(String name) {
@@ -175,6 +220,11 @@ public final class Property implements Comparable<Property> {
 
     public static Property internalText(String name) {
         return new Property(name, true, ValueType.TEXT);
+    }
+
+    /** @since Apache Tika 1.0 */
+    public static Property internalMIMEType(String name) {
+        return new Property(name, true, ValueType.MIME_TYPE);
     }
 
     public static Property internalURI(String name) {

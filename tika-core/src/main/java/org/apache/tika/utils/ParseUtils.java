@@ -110,7 +110,7 @@ public class ParseUtils implements TikaMimeKeys {
             InputStream stream, TikaConfig config, String mimeType)
             throws TikaException, IOException {
         Metadata metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, mimeType);
+        metadata.setFormat(mimeType);
         return new Tika(config).parseToString(stream, metadata);
     }
 

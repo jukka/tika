@@ -50,7 +50,7 @@ public class ODFParserTest extends TestCase {
 
              assertEquals(
                    "application/vnd.oasis.opendocument.text",
-                   metadata.get(Metadata.CONTENT_TYPE));
+                   metadata.getFormat());
 
              String content = handler.toString();
              assertTrue(content.contains("Tika is part of the Lucene project."));
@@ -75,7 +75,7 @@ public class ODFParserTest extends TestCase {
 
              assertEquals(
                    "application/vnd.oasis.opendocument.text",
-                   metadata.get(Metadata.CONTENT_TYPE));
+                   metadata.getFormat());
              assertEquals("2007-09-14T11:07:10", metadata.get(Metadata.DATE));
              assertEquals("2007-09-14T11:06:08", metadata.get(Metadata.CREATION_DATE));
              assertEquals("en-US", metadata.get(Metadata.LANGUAGE));
@@ -121,7 +121,7 @@ public class ODFParserTest extends TestCase {
   
            assertEquals(
                    "application/vnd.oasis.opendocument.formula",
-                   metadata.get(Metadata.CONTENT_TYPE));
+                   metadata.getFormat());
            assertEquals(null, metadata.get(Metadata.DATE));
            assertEquals("2006-01-27T11:55:22", metadata.get(Metadata.CREATION_DATE));
            assertEquals("The quick brown fox jumps over the lazy dog", metadata.get(Metadata.TITLE));
@@ -169,7 +169,7 @@ public class ODFParserTest extends TestCase {
   
            assertEquals(
                    "application/vnd.oasis.opendocument.text",
-                   metadata.get(Metadata.CONTENT_TYPE));
+                   metadata.getFormat());
            assertEquals("2009-10-05T21:22:38", metadata.get(Metadata.DATE));
            assertEquals("2009-10-05T19:04:01", metadata.get(Metadata.CREATION_DATE));
            assertEquals("Apache Tika", metadata.get(Metadata.TITLE));

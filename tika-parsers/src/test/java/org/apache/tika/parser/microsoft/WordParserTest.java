@@ -41,9 +41,7 @@ public class WordParserTest extends TikaTest {
             Metadata metadata = new Metadata();
             new OfficeParser().parse(input, handler, metadata, new ParseContext());
 
-            assertEquals(
-                    "application/msword",
-                    metadata.get(Metadata.CONTENT_TYPE));
+            assertEquals("application/msword", metadata.getFormat());
             assertEquals("Sample Word Document", metadata.get(Metadata.TITLE));
             assertEquals("Keith Bennett", metadata.get(Metadata.AUTHOR));
             assertTrue(handler.toString().contains("Sample Word Document"));
@@ -110,9 +108,7 @@ public class WordParserTest extends TikaTest {
         String xml = result.xml;
         Metadata metadata = result.metadata;
 
-        assertEquals(
-                     "application/msword",
-                     metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("application/msword", metadata.getFormat());
         assertEquals("Sample Word Document", metadata.get(Metadata.TITLE));
         assertEquals("Keith Bennett", metadata.get(Metadata.AUTHOR));
         assertTrue(xml.contains("Sample Word Document"));
@@ -172,9 +168,7 @@ public class WordParserTest extends TikaTest {
             Metadata metadata = new Metadata();
             new OfficeParser().parse(input, handler, metadata, new ParseContext());
 
-            assertEquals(
-                    "application/msword",
-                    metadata.get(Metadata.CONTENT_TYPE));
+            assertEquals("application/msword", metadata.getFormat());
             assertEquals("The quick brown fox jumps over the lazy dog", metadata.get(Metadata.TITLE));
             assertEquals("Gym class featuring a brown fox and lazy dog", metadata.get(Metadata.SUBJECT));
             assertEquals("Nevin Nollop", metadata.get(Metadata.AUTHOR));

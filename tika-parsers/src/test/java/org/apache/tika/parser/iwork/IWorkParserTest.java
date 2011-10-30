@@ -49,7 +49,7 @@ public class IWorkParserTest extends TestCase {
         iWorkParser.parse(input, handler, metadata, parseContext);
 
         assertEquals(6, metadata.size());
-        assertEquals("application/vnd.apple.keynote", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("application/vnd.apple.keynote", metadata.getFormat());
         assertEquals("3", metadata.get(Metadata.SLIDE_COUNT));
         assertEquals("1024", metadata.get(KeynoteContentHandler.PRESENTATION_WIDTH));
         assertEquals("768", metadata.get(KeynoteContentHandler.PRESENTATION_HEIGHT));
@@ -83,7 +83,7 @@ public class IWorkParserTest extends TestCase {
         iWorkParser.parse(input, handler, metadata, parseContext);
 
         assertEquals(51, metadata.size());
-        assertEquals("application/vnd.apple.pages", metadata.get(Metadata.CONTENT_TYPE));
+        assertEquals("application/vnd.apple.pages", metadata.getFormat());
         assertEquals("Tika user", metadata.get(Metadata.AUTHOR));
         assertEquals("Apache tika", metadata.get(Metadata.TITLE));
         assertEquals("2010-05-09T21:34:38+0200", metadata.get(Metadata.CREATION_DATE));

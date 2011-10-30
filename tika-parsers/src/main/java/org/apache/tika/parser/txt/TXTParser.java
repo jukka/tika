@@ -45,7 +45,7 @@ import org.xml.sax.SAXException;
  * <p>
  * This parser sets the following output metadata entries:
  * <dl>
- *   <dt>{@link org.apache.tika.metadata.HttpHeaders#CONTENT_TYPE}</dt>
+ *   <dt>{@link org.apache.tika.metadata.HttpHeaders#DC_FORMAT}</dt>
  *   <dd><code>text/plain</code></dd>
  *   <dt>{@link org.apache.tika.metadata.HttpHeaders#CONTENT_ENCODING}</dt>
  *   <dd>The detected text encoding of the document.</dd>
@@ -78,7 +78,7 @@ public class TXTParser extends AbstractParser {
         // Detect the content encoding (the stream is reset to the beginning)
         CharsetDetector detector = new CharsetDetector();
         String incomingCharset = metadata.get(Metadata.CONTENT_ENCODING);
-        String incomingType = metadata.get(Metadata.CONTENT_TYPE);
+        String incomingType = metadata.getFormat();
         if (incomingCharset == null && incomingType != null) {
             // TIKA-341: Use charset in content-type
             MediaType mt = MediaType.parse(incomingType);
@@ -108,7 +108,7 @@ public class TXTParser extends AbstractParser {
 
         // TIKA-341: Only stomp on content-type after we're done trying to
         // use it to guess at the charset.
-        metadata.set(Metadata.CONTENT_TYPE, "text/plain");
+        metadata.setFormat("text/plain");
 
         try {
             Reader reader =

@@ -31,7 +31,7 @@ public class ImageParserTest extends TestCase {
 
     public void testBMP() throws Exception {
         Metadata metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, "image/bmp");
+        metadata.setFormat("image/bmp");
         InputStream stream =
             getClass().getResourceAsStream("/test-documents/testBMP.bmp");
         parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());
@@ -52,7 +52,7 @@ public class ImageParserTest extends TestCase {
 
     public void testGIF() throws Exception {
         Metadata metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, "image/gif");
+        metadata.setFormat("image/gif");
         InputStream stream =
             getClass().getResourceAsStream("/test-documents/testGIF.gif");
         parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());
@@ -82,7 +82,7 @@ public class ImageParserTest extends TestCase {
 
     public void testJPEG() throws Exception {
         Metadata metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, "image/jpeg");
+        metadata.setFormat("image/jpeg");
         InputStream stream =
             getClass().getResourceAsStream("/test-documents/testJPEG.jpg");
         parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());
@@ -117,7 +117,7 @@ public class ImageParserTest extends TestCase {
 
     public void testPNG() throws Exception {
         Metadata metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, "image/png");
+        metadata.setFormat("image/png");
         InputStream stream =
             getClass().getResourceAsStream("/test-documents/testPNG.png");
         parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());

@@ -64,7 +64,7 @@ public class TypeDetectorTest extends TestCase {
 
     private void assertDetect(MediaType type, String name){
         Metadata metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, name);
+        metadata.setFormat(name);
         try {
             assertEquals(type, detector.detect(null, metadata));
         } catch (IOException e) {

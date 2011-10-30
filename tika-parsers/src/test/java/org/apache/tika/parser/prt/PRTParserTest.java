@@ -34,7 +34,7 @@ public class PRTParserTest extends TikaTest {
           ContentHandler handler = new BodyContentHandler();
           new PRTParser().parse(input, handler, metadata);
 
-          assertEquals("application/x-prt", metadata.get(Metadata.CONTENT_TYPE));
+          assertEquals("application/x-prt", metadata.getFormat());
 
           // This file has a date
           assertEquals("2011-06-20T16:54:00",
@@ -72,7 +72,7 @@ public class PRTParserTest extends TikaTest {
           ContentHandler handler = new BodyContentHandler();
           new PRTParser().parse(input, handler, metadata);
 
-          assertEquals("application/x-prt", metadata.get(Metadata.CONTENT_TYPE));
+          assertEquals("application/x-prt", metadata.getFormat());
 
           // File has both a date and a description
           assertEquals("1997-04-01T08:59:00",

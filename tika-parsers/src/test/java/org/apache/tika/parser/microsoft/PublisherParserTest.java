@@ -35,9 +35,7 @@ public class PublisherParserTest extends TestCase {
             ContentHandler handler = new BodyContentHandler();
             new OfficeParser().parse(input, handler, metadata, new ParseContext());
 
-            assertEquals(
-                    "application/x-mspublisher",
-                    metadata.get(Metadata.CONTENT_TYPE));
+            assertEquals("application/x-mspublisher", metadata.getFormat());
             assertEquals(null, metadata.get(Metadata.TITLE));
             assertEquals("Nick Burch", metadata.get(Metadata.AUTHOR));
             String content = handler.toString();

@@ -151,12 +151,12 @@ class HtmlHandler extends TextContentHandler {
             } else {
                 metadata.set("ICBM", value);
             }
-        } else if (name.equalsIgnoreCase(Metadata.CONTENT_TYPE)){
+        } else if (name.equalsIgnoreCase("Content-Type")){
             MediaType type = MediaType.parse(value);
             if (type != null) {
-                metadata.set(Metadata.CONTENT_TYPE, type.toString());
+                metadata.setFormat(type.toString());
             } else {
-                metadata.set(Metadata.CONTENT_TYPE, value);
+                metadata.setFormat(value);
             }
         } else {
             metadata.set(name, value);

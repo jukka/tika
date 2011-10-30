@@ -33,7 +33,7 @@ public class JpegParserTest extends TestCase {
 
     public void testJPEG() throws Exception {
         Metadata metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, "image/jpeg");
+        metadata.setFormat("image/jpeg");
         InputStream stream =
             getClass().getResourceAsStream("/test-documents/testJPEG_EXIF.jpg");
         parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());
@@ -75,7 +75,7 @@ public class JpegParserTest extends TestCase {
 
     public void testJPEGGeo() throws Exception {
         Metadata metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, "image/jpeg");
+        metadata.setFormat("image/jpeg");
         InputStream stream =
             getClass().getResourceAsStream("/test-documents/testJPEG_GEO.jpg");
         parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());
@@ -115,7 +115,7 @@ public class JpegParserTest extends TestCase {
     
     public void testJPEGTitleAndDescription() throws Exception {
         Metadata metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, "image/jpeg");
+        metadata.setFormat("image/jpeg");
         InputStream stream =
             getClass().getResourceAsStream("/test-documents/testJPEG_commented.jpg");
         parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());
@@ -154,7 +154,7 @@ public class JpegParserTest extends TestCase {
     
     public void testJPEGTitleAndDescriptionPhotoshop() throws Exception {
         Metadata metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, "image/jpeg");
+        metadata.setFormat("image/jpeg");
         InputStream stream =
             getClass().getResourceAsStream("/test-documents/testJPEG_commented_pspcs2mac.jpg");
         parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());
@@ -169,7 +169,7 @@ public class JpegParserTest extends TestCase {
     
     public void testJPEGTitleAndDescriptionXnviewmp() throws Exception {
         Metadata metadata = new Metadata();
-        metadata.set(Metadata.CONTENT_TYPE, "image/jpeg");
+        metadata.setFormat("image/jpeg");
         InputStream stream =
             getClass().getResourceAsStream("/test-documents/testJPEG_commented_xnviewmp026.jpg");
         parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());
@@ -187,7 +187,7 @@ public class JpegParserTest extends TestCase {
     
     public void testJPEGoddTagComponent() throws Exception {
        Metadata metadata = new Metadata();
-       metadata.set(Metadata.CONTENT_TYPE, "image/jpeg");
+       metadata.setFormat("image/jpeg");
        InputStream stream =
            getClass().getResourceAsStream("/test-documents/testJPEG_oddTagComponent.jpg");
        parser.parse(stream, new DefaultHandler(), metadata, new ParseContext());

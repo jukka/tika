@@ -121,7 +121,7 @@ public class TNEFParser extends AbstractParser {
        if(name != null)
           metadata.set(Metadata.RESOURCE_NAME_KEY, name);
        if(type != null)
-          metadata.set(Metadata.CONTENT_TYPE, type);
+          metadata.setFormat(type);
 
        if (embeddedExtractor.shouldParseEmbedded(metadata)) {
          embeddedExtractor.parseEmbedded(
