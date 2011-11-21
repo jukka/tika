@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.mime.MediaType;
@@ -55,10 +56,12 @@ public class CompositeDetector implements Detector {
     }
 
     public MediaType detect(InputStream input, Metadata metadata)
-            throws IOException { 
+            throws IOException {
         MediaType type = MediaType.OCTET_STREAM;
-        for (Detector detector : detectors) {
-            MediaType detected = detector.detect(input, metadata);
+        ListIterator<Detector> iterator =
+                detectors.listIterator(detectors.size());
+        while (iterator.hasPrevious()) {
+            MediaType detected = iterator.previous().detect(input, metadata);
             if (registry.isSpecializationOf(detected, type)) {
                 type = detected;
             }
